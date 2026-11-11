@@ -118,10 +118,8 @@ ApplicationWindow {
         "NOK", "NZD", "PHP", "PLN", "RON", "SEK", "SGD", "THB", "TRY", "ZAR"
     ]
     property var fiatPriceAPIs: {
-        return {
-            "kraken": "https://api.kraken.com/0/public/Ticker?pair=XMRUSD",
-            "coinpaprika": "https://api.coinpaprika.com/v1/tickers/xmr-monero"
-        }
+        // Ghillie: no fiat price providers. Ghillie shows no fiat prices and makes no third-party price requests.
+        return {}
     }
 
     // true if wallet ever synchronized
@@ -1351,7 +1349,8 @@ ApplicationWindow {
     }
 
     function fiatApiRefresh(){
-        // trigger API call
+        // Ghillie: price lookups are disabled (no fiat prices, no third-party requests)
+        return;
         if(!persistentSettings.fiatPriceEnabled)
             return;
 
@@ -1556,7 +1555,7 @@ ApplicationWindow {
         property int walletMode: 2
         property int lockOnUserInActivityInterval: 10  // minutes
         property bool blackTheme: MoneroComponents.Style.blackTheme
-        property bool checkForUpdates: true
+        property bool checkForUpdates: false
         property bool autosave: true
         property int autosaveMinutes: 10
         property bool pruneBlockchain: false
@@ -2331,6 +2330,9 @@ ApplicationWindow {
     }
 
     function checkUpdates() {
+        // Ghillie: no automatic update checks (Monero's checker queries Monero's servers). Updates are announced on
+        // camocoin.org and signed with the CAMO release key.
+        return;
         const version = Version.GUI_VERSION.match(/\d+\.\d+\.\d+\.\d+/);
         if (version) {
             walletManager.checkUpdatesAsync(
@@ -2344,7 +2346,7 @@ ApplicationWindow {
         id: updatesTimer
         interval: 3600 * 1000
         repeat: true
-        running: !disableCheckUpdatesFlag && persistentSettings.checkForUpdates
+        running: false // Ghillie: update checks disabled
         triggeredOnStart: true
         onTriggered: checkUpdates()
     }
@@ -2423,11 +2425,11 @@ ApplicationWindow {
     function getDefaultDaemonRpcPort(networkType) {
         switch (parseInt(networkType)) {
             case NetworkType.STAGENET:
-                return 38081;
+                return 39741; // CAMO stagenet RPC
             case NetworkType.TESTNET:
-                return 28081;
+                return 29741; // CAMO testnet RPC
             default:
-                return 18081;
+                return 19741; // CAMO mainnet RPC
         }
     }
 

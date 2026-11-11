@@ -238,10 +238,11 @@ int main(int argc, char *argv[])
     }
 #endif
 
-    app.setApplicationName("monero-core");
-    app.setDesktopFileName("org.getmonero.Monero");
-    app.setOrganizationDomain("getmonero.org");
-    app.setOrganizationName("monero-project");
+    // Ghillie: own identity, so settings and wallets never mix with an installed Monero GUI
+    app.setApplicationName("ghillie");
+    app.setDesktopFileName("org.camocoin.Ghillie");
+    app.setOrganizationDomain("camocoin.org");
+    app.setOrganizationName("camo");
 
     // Ask to enable Tails OS persistence mode, it affects:
     // - Log file location

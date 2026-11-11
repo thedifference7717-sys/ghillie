@@ -32,4 +32,11 @@ Design reference: Ghillie mockups https://claude.ai/artifact/RfFeusuAaxrHQnLayoF
    release key (`5F1A 8350 C748 BC43 AD19  2472 AF13 7B28 E11A 0857`).
 
 ## Status
-- Nov 11, 2026: repo created; upstream monero-gui `v0.18.5.4` history pushed to `main`. Nothing changed yet.
+- Nov 11, 2026: repo created; upstream monero-gui `v0.18.5.4` history pushed to `main`.
+- Nov 11: stage 2 and 3 edits (QML/C++ text and defaults only, **not yet compiled**): XMR -> CAMO in displayed text; 1-minute
+  block math (unlock countdown, mining odds); restore-from-date uses CAMO chain start (mainnet 1797357600, stagenet
+  1794427500); `camo:`/`camoseed:` URL schemes (Info.plist, Linux .desktop), only camo: links handled; address hints
+  C.. / Q.. / K.. L..; default RPC ports 19741/39741/29741; app identity ghillie / org.camocoin.Ghillie / camocoin.org;
+  fiat price providers removed and price setting hidden; update checker disabled and hidden; P2Pool removed (solo mining
+  only; it downloaded p2pool from GitHub and mines Monero's chain).
+- Next: stage 1 plumbing (submodule -> CAMO repo, binary/app name, Linux CI build), first compile, then the Ghillie look.

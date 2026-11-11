@@ -50,6 +50,8 @@
 #endif
 
 void P2PoolManager::download() {
+    // Ghillie: never download P2Pool (it mines Monero's chain, not CAMO's)
+    return;
     m_scheduler.run([this] {
         QUrl url;
         QString fileName;

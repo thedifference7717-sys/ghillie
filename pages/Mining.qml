@@ -74,7 +74,7 @@ Rectangle {
 
         MoneroComponents.TextPlain {
             id: soloMainLabel
-            text: qsTr("Mining with your computer helps strengthen the Monero network. The more people mine, the harder it is for the network to be attacked, and every little bit helps.\n\nMining also gives you a small chance to earn some Monero. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!") + "\n\n" + qsTr("P2Pool mining is a decentralized way to pool mine that pays out more frequently compared to solo mining, while also supporting the network.") + translationManager.emptyString
+            text: qsTr("Mining with your computer helps strengthen the CAMO network. The more people mine, the harder it is for the network to be attacked, and every little bit helps.\n\nMining also gives you a small chance to earn some CAMO. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!") + translationManager.emptyString
             wrapMode: Text.Wrap
             Layout.fillWidth: true
             font.family: MoneroComponents.Style.fontRegular.name
@@ -99,7 +99,7 @@ Rectangle {
                 id: miningModeModel
 
                 ListElement { column1: qsTr("Solo") ; column2: ""; priority: 0}
-                ListElement { column1: "P2Pool" ; column2: ""; priority: 1}
+                // Ghillie: no P2Pool. P2Pool mines Monero's chain, not CAMO's, and was downloaded from the internet.
             }
 
             ColumnLayout {
@@ -121,11 +121,11 @@ Rectangle {
                 MoneroComponents.StandardDropdown {
                     Layout.maximumWidth: 200
                     id: miningModeDropdown
-                    visible: true
-                    currentIndex: persistentSettings.miningModeSelected
+                    visible: false // Ghillie: solo mining only (pool mining: see camocoin.org)
+                    currentIndex: 0
                     dataModel: miningModeModel
                     onChanged: {
-                        persistentSettings.allow_p2pool_mining = miningModeDropdown.currentIndex === 1;
+                        persistentSettings.allow_p2pool_mining = false;
                         persistentSettings.miningModeSelected = miningModeDropdown.currentIndex;
                         walletManager.stopMining();
                         p2poolManager.exit();
