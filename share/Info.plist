@@ -42,18 +42,18 @@
   <array>
     <dict>
       <key>CFBundleURLName</key>
-      <string>monero Handler</string>
+      <string>camo Handler</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>monero</string>
+        <string>camo</string>
       </array>
     </dict>
     <dict>
       <key>CFBundleURLName</key>
-      <string>moneroseed Handler</string>
+      <string>camoseed Handler</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>moneroseed</string>
+        <string>camoseed</string>
       </array>
     </dict>
   </array>

@@ -103,7 +103,7 @@ QString xdgMime(){
         "Type=Application\n"
         "Icon=monero\n"
         "Categories=Network;GNOME;Qt;\n"
-        "MimeType=x-scheme-handler/monero;x-scheme-handler/moneroseed\n"
+        "MimeType=x-scheme-handler/camo;x-scheme-handler/camoseed\n"
         "StartupNotify=true\n"
         "X-GNOME-Bugzilla-Bugzilla=GNOME\n"
         "X-GNOME-UsesNotifications=true\n"

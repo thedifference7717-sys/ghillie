@@ -442,12 +442,12 @@ ApplicationWindow {
     }
 
     function onUriHandler(uri){
-        if (uri && (uri.startsWith("monero://") || uri.startsWith("monero:"))) {
-            const normalizedUri = uri.replace("monero://", "monero:");
+        if (uri && (uri.startsWith("camo://") || uri.startsWith("camo:"))) {
+            const normalizedUri = uri.replace("camo://", "camo:");
             const parsed = walletManager.parse_uri_to_object(normalizedUri);
 
             if (parsed.error) {
-                console.log("Invalid Monero URI: " + parsed.error);
+                console.log("Invalid CAMO URI: " + parsed.error);
             } else {
                 middlePanel.transferView.sendTo(
                     parsed.address || "",
