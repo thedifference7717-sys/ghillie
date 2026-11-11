@@ -477,7 +477,7 @@ Item {
                         font.pixelSize: 14
                         font.bold: false
                         color: "white"
-                        text: qsTr("Amount to receive") + " (XMR)" + translationManager.emptyString
+                        text: qsTr("Amount to receive") + " (CAMO)" + translationManager.emptyString
                         themeTransition: false
                     }
 

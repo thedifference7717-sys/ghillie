@@ -544,7 +544,7 @@ Rectangle {
                     statusText.text = qsTr("Mining temporarily suspended.") + translationManager.emptyString;
                 }
                 else {
-                    var blockTime = 120;
+                    var blockTime = 60; // CAMO: 1-minute blocks
                     var blocksPerDay = 86400 / blockTime;
                     var globalHashRate = walletManager.networkDifficulty() / blockTime;
                     var probabilityFindNextBlock = userHashRate / globalHashRate;

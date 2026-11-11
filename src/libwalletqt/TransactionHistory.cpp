@@ -124,7 +124,7 @@ void TransactionHistory::refresh(quint32 accountIndex)
             if (ti->confirmations() < requiredConfirmations && ti->blockHeight() >= lastTxHeight) {
                 lastTxHeight = ti->blockHeight();
                 // TODO: Fetch block time and confirmations needed from wallet2?
-                m_minutesToUnlock = (requiredConfirmations - ti->confirmations()) * 2;
+                m_minutesToUnlock = (requiredConfirmations - ti->confirmations()) * 1; // CAMO: 1-minute blocks
                 m_locked = true;
             }
         }
