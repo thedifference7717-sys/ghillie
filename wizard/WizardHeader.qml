@@ -55,17 +55,20 @@ ColumnLayout {
         }
 
         Text {
-            text: title
-            font.family: MoneroComponents.Style.fontRegular.name
+            // Ghillie: headings in the VT323 pixel font, smoothing off
+            text: title.toUpperCase()
+            font.family: MoneroComponents.Style.fontPixel.name
+            renderType: Text.NativeRendering
+            antialiasing: false
             color: MoneroComponents.Style.defaultFontColor
             opacity: MoneroComponents.Style.blackTheme ? 1.0 : 0.8
             font.pixelSize: {
                 if (wizardController.layoutScale == 4) {
-                    return 16;
+                    return 22;
                 } else if (wizardController.layoutScale == 3) {
-                    return 28;
+                    return 36;
                 } else if (wizardController.layoutScale <= 2) {
-                    return 32;
+                    return 42;
                 }
             }
 

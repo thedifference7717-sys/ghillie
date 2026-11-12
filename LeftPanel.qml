@@ -212,20 +212,23 @@ Rectangle {
                 }
 
                 MoneroComponents.Label {
-                    fontSize: 16
                     visible: isSyncing
                     text: qsTr("Syncing...") + translationManager.emptyString
                     color: MoneroComponents.Style.blackTheme ? "white" : "black"
-                    anchors.left: parent.left
-                    anchors.leftMargin: 20
-                    anchors.bottom: currencyLabel.top
-                    anchors.bottomMargin: 15
+                    fontSize: 14
+                    anchors.left: currencyLabel.right
+                    anchors.leftMargin: 10
+                    anchors.baseline: currencyLabel.baseline
                     themeTransition: false
                 }
 
                 MoneroComponents.TextPlain {
+                    // Ghillie: "CAMO" sits above the balance (it overlapped the number when placed beside it)
                     id: currencyLabel
-                    font.pixelSize: 16
+                    font.pixelSize: 20
+                    font.family: MoneroComponents.Style.fontPixel.name
+                    renderType: Text.NativeRendering
+                    antialiasing: false
                     text: {
                         if (persistentSettings.fiatPriceEnabled && persistentSettings.fiatPriceToggle) {
                             return appWindow.fiatApiCurrencySymbol();
@@ -233,11 +236,11 @@ Rectangle {
                             return "CAMO"
                         }
                     }
-                    color: MoneroComponents.Style.blackTheme ? "white" : "black"
+                    color: MoneroComponents.Style.blackTheme ? MoneroComponents.Style.green : "black"
                     anchors.left: parent.left
                     anchors.leftMargin: 20
                     anchors.top: parent.top
-                    anchors.topMargin: 100
+                    anchors.topMargin: 64
                     themeTransition: false
 
                     MouseArea {
@@ -253,8 +256,12 @@ Rectangle {
                     id: balancePart1
                     themeTransition: false
                     anchors.left: parent.left
-                    anchors.leftMargin: 58
-                    anchors.baseline: currencyLabel.baseline
+                    anchors.leftMargin: 20
+                    anchors.top: currencyLabel.bottom
+                    anchors.topMargin: -2
+                    font.family: MoneroComponents.Style.fontPixel.name
+                    renderType: Text.NativeRendering
+                    antialiasing: false
                     color: MoneroComponents.Style.blackTheme ? "white" : "black"
                     Binding on color {
                         when: balancePart1MouseArea.containsMouse || balancePart2MouseArea.containsMouse
@@ -268,10 +275,10 @@ Rectangle {
                         }
                     }
                     font.pixelSize: {
-                        var defaultSize = 29;
+                        var defaultSize = 46;
                         var digits = (balancePart1.text.length - 1)
-                        if (digits > 2 && !(persistentSettings.fiatPriceEnabled && persistentSettings.fiatPriceToggle)) {
-                            return defaultSize - 1.1 * digits
+                        if (digits > 4 && !(persistentSettings.fiatPriceEnabled && persistentSettings.fiatPriceToggle)) {
+                            return defaultSize - 2 * (digits - 4)
                         } else {
                             return defaultSize
                         }
@@ -292,8 +299,11 @@ Rectangle {
                     id: balancePart2
                     themeTransition: false
                     anchors.left: balancePart1.right
-                    anchors.leftMargin: 2
-                    anchors.baseline: currencyLabel.baseline
+                    anchors.leftMargin: 1
+                    anchors.baseline: balancePart1.baseline
+                    font.family: MoneroComponents.Style.fontPixel.name
+                    renderType: Text.NativeRendering
+                    antialiasing: false
                     color: balancePart1.color
                     text: {
                         if (persistentSettings.fiatPriceEnabled && persistentSettings.fiatPriceToggle) {
@@ -302,7 +312,7 @@ Rectangle {
                             return balanceString.split('.')[1]
                         }
                     }
-                    font.pixelSize: 16
+                    font.pixelSize: 24
                     MouseArea {
                         id: balancePart2MouseArea
                         hoverEnabled: true
