@@ -52,8 +52,8 @@ QByteArray Updater::fetchSignedHash(
     const QString &proxyAddress,
     QPair<QString, QString> &signers) const
 {
-    static constexpr const char hashesTxtUrl[] = "https://web.getmonero.org/downloads/hashes.txt";
-    static constexpr const char hashesTxtSigUrl[] = "https://web.getmonero.org/downloads/hashes.txt.sig";
+    static constexpr const char hashesTxtUrl[] = "https://camocoin.org/downloads/hashes.txt";
+    static constexpr const char hashesTxtSigUrl[] = "https://camocoin.org/downloads/hashes.txt.sig";
 
     const Network network(proxyAddress);
     std::string hashesTxt = network.get(hashesTxtUrl);

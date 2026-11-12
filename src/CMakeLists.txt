@@ -81,7 +81,14 @@ else()
     set_target_properties(monero-wallet-gui PROPERTIES COMPILE_DEFINITIONS "ANDROID")
 endif()
 
+# Ghillie: the program is "Ghillie" (Ghillie.app) on macOS and "ghillie" elsewhere
+if(APPLE)
+    set(GHILLIE_OUTPUT_NAME "Ghillie")
+else()
+    set(GHILLIE_OUTPUT_NAME "ghillie")
+endif()
 set_target_properties(monero-wallet-gui PROPERTIES
+    OUTPUT_NAME "${GHILLIE_OUTPUT_NAME}"
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
     MACOSX_BUNDLE TRUE
     MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/share/Info.plist"

@@ -17,10 +17,18 @@ jobs:
         submodules: recursive
     - name: install dependencies
       run: HOMEBREW_NO_AUTO_UPDATE=1 brew install boost hidapi ninja openssl zmq libsodium unbound protobuf qt5 pkg-config
+    - name: use OpenSSL 3 (Monero 0.18 code does not build with OpenSSL 4)
+      run: |
+        HOMEBREW_NO_AUTO_UPDATE=1 brew install openssl@3
+        echo "OPENSSL_ROOT_DIR=$(brew --prefix openssl@3)" >> "$GITHUB_ENV"
+        echo "PKG_CONFIG_PATH=$(brew --prefix openssl@3)/lib/pkgconfig:${PKG_CONFIG_PATH}" >> "$GITHUB_ENV"
     - name: build
-      run: QML_TESTS=ON make release
+      run: |
+        mkdir -p build/release && cd build/release
+        cmake -G Ninja -D QML_TESTS=ON -D CMAKE_BUILD_TYPE=Release -D OPENSSL_ROOT_DIR="${OPENSSL_ROOT_DIR}" ../..
+        cmake --build .
     - name: test qml
-      run: build/release/bin/monero-wallet-gui.app/Contents/MacOS/monero-wallet-gui --test-qml
+      run: build/release/bin/Ghillie.app/Contents/MacOS/Ghillie --test-qml
 
   build-ubuntu:
     runs-on: ubuntu-latest
@@ -44,7 +52,7 @@ jobs:
     - name: build
       run: QML_TESTS=ON make release
     - name: test qml
-      run: xvfb-run -a build/release/bin/monero-wallet-gui --test-qml
+      run: xvfb-run -a build/release/bin/ghillie --test-qml
 
   build-windows:
     runs-on: windows-latest
@@ -71,7 +79,7 @@ jobs:
       run: cmake --build . --target deploy
       working-directory: build/release
     - name: test qml
-      run: build/release/bin/monero-wallet-gui --test-qml -o test.log,txt || { rc=$?; cat test.log; exit "$rc"; }
+      run: build/release/bin/ghillie --test-qml -o test.log,txt || { rc=$?; cat test.log; exit "$rc"; }
 
   macos-bundle:
     runs-on: macos-15
@@ -81,6 +89,11 @@ jobs:
         submodules: recursive
     - name: install dependencies
       run: HOMEBREW_NO_AUTO_UPDATE=1 brew install boost hidapi ninja openssl zmq unbound protobuf pkg-config
+    - name: use OpenSSL 3 (Monero 0.18 code does not build with OpenSSL 4)
+      run: |
+        HOMEBREW_NO_AUTO_UPDATE=1 brew install openssl@3
+        echo "OPENSSL_ROOT_DIR=$(brew --prefix openssl@3)" >> "$GITHUB_ENV"
+        echo "PKG_CONFIG_PATH=$(brew --prefix openssl@3)/lib/pkgconfig:${PKG_CONFIG_PATH}" >> "$GITHUB_ENV"
     - name: clone qt repo
       run: git clone -b "${QT_TAG}" --recursive --depth 1 --shallow-submodules https://github.com/qt/qt5
     - name: build qt from source
@@ -98,11 +111,11 @@ jobs:
         ../../../../build/qtbase/bin/qmake
         make -j"$(sysctl -n hw.ncpu)"
         make install
-    - name: build monero-gui
+    - name: build Ghillie
       run: |
         set -o pipefail
         mkdir build && cd build
-        cmake -G Ninja -D CMAKE_BUILD_TYPE=Release -D ARCH=default -D CMAKE_PREFIX_PATH="${QT_PREFIX}" .. 2>&1 | tee ../build.log
+        cmake -G Ninja -D CMAKE_BUILD_TYPE=Release -D ARCH=default -D CMAKE_PREFIX_PATH="${QT_PREFIX}" -D OPENSSL_ROOT_DIR="${OPENSSL_ROOT_DIR}" .. 2>&1 | tee ../build.log
         cmake --build . 2>&1 | tee -a ../build.log
     - name: show build errors as annotations
       if: failure()
@@ -111,14 +124,14 @@ jobs:
       run: cmake --build . --target deploy
       working-directory: build
     - name: check qml startup
-      run: build/bin/monero-wallet-gui.app/Contents/MacOS/monero-wallet-gui --check-qml
+      run: build/bin/Ghillie.app/Contents/MacOS/Ghillie --check-qml
     - name: create .tar
-      run: tar -cf monero-wallet-gui.tar monero-wallet-gui.app
+      run: tar -cf Ghillie.tar Ghillie.app
       working-directory: build/bin
     - uses: actions/upload-artifact@v7
       with:
         name: ${{ github.job }}
-        path: build/bin/monero-wallet-gui.tar
+        path: build/bin/Ghillie.tar
 
   macos-bundle-intel:
     runs-on: macos-15-intel
@@ -128,6 +141,11 @@ jobs:
         submodules: recursive
     - name: install dependencies
       run: HOMEBREW_NO_AUTO_UPDATE=1 brew install boost hidapi ninja openssl zmq unbound protobuf pkg-config
+    - name: use OpenSSL 3 (Monero 0.18 code does not build with OpenSSL 4)
+      run: |
+        HOMEBREW_NO_AUTO_UPDATE=1 brew install openssl@3
+        echo "OPENSSL_ROOT_DIR=$(brew --prefix openssl@3)" >> "$GITHUB_ENV"
+        echo "PKG_CONFIG_PATH=$(brew --prefix openssl@3)/lib/pkgconfig:${PKG_CONFIG_PATH}" >> "$GITHUB_ENV"
     - name: clone qt repo
       run: git clone -b "${QT_TAG}" --recursive --depth 1 --shallow-submodules https://github.com/qt/qt5
     - name: build qt from source
@@ -145,11 +163,11 @@ jobs:
         ../../../../build/qtbase/bin/qmake
         make -j"$(sysctl -n hw.ncpu)"
         make install
-    - name: build monero-gui
+    - name: build Ghillie
       run: |
         set -o pipefail
         mkdir build && cd build
-        cmake -G Ninja -D CMAKE_BUILD_TYPE=Release -D ARCH=default -D CMAKE_PREFIX_PATH="${QT_PREFIX}" .. 2>&1 | tee ../build.log
+        cmake -G Ninja -D CMAKE_BUILD_TYPE=Release -D ARCH=default -D CMAKE_PREFIX_PATH="${QT_PREFIX}" -D OPENSSL_ROOT_DIR="${OPENSSL_ROOT_DIR}" .. 2>&1 | tee ../build.log
         cmake --build . 2>&1 | tee -a ../build.log
     - name: show build errors as annotations
       if: failure()
@@ -158,14 +176,14 @@ jobs:
       run: cmake --build . --target deploy
       working-directory: build
     - name: check qml startup
-      run: build/bin/monero-wallet-gui.app/Contents/MacOS/monero-wallet-gui --check-qml
+      run: build/bin/Ghillie.app/Contents/MacOS/Ghillie --check-qml
     - name: create .tar
-      run: tar -cf monero-wallet-gui.tar monero-wallet-gui.app
+      run: tar -cf Ghillie.tar Ghillie.app
       working-directory: build/bin
     - uses: actions/upload-artifact@v7
       with:
         name: ${{ github.job }}
-        path: build/bin/monero-wallet-gui.tar
+        path: build/bin/Ghillie.tar
 
   docker-linux-static:
     runs-on: ubuntu-22.04
@@ -182,14 +200,14 @@ jobs:
     - name: build
       run: docker run --rm -v ${{ github.workspace }}:/monero-gui -w /monero-gui monero:build-env-linux sh -c 'make release-static'
     - name: sha256sum
-      run: shasum -a256 ${{ github.workspace }}/build/release/bin/monero-wallet-gui
+      run: shasum -a256 ${{ github.workspace }}/build/release/bin/ghillie
     - name: check qml startup
-      run: xvfb-run -a ${{ github.workspace }}/build/release/bin/monero-wallet-gui --check-qml
+      run: xvfb-run -a ${{ github.workspace }}/build/release/bin/ghillie --check-qml
     - uses: actions/upload-artifact@v7
       with:
         name: ${{ github.job }}
         path: |
-          ${{ github.workspace }}/build/release/bin/monero-wallet-gui
+          ${{ github.workspace }}/build/release/bin/ghillie
           ${{ github.workspace }}/build/release/bin/camod
 
   docker-windows-static:
@@ -205,12 +223,12 @@ jobs:
     - name: build
       run: docker run --rm -v ${{ github.workspace }}:/monero-gui -w /monero-gui monero:build-env-windows sh -c 'make depends root=/depends target=x86_64-w64-mingw32 tag=win-x64'
     - name: sha256sum
-      run: shasum -a256 ${{ github.workspace }}/build/x86_64-w64-mingw32/release/bin/monero-wallet-gui.exe
+      run: shasum -a256 ${{ github.workspace }}/build/x86_64-w64-mingw32/release/bin/ghillie.exe
     - uses: actions/upload-artifact@v7
       with:
         name: ${{ github.job }}
         path: |
-          ${{ github.workspace }}/build/x86_64-w64-mingw32/release/bin/monero-wallet-gui.exe
+          ${{ github.workspace }}/build/x86_64-w64-mingw32/release/bin/ghillie.exe
           ${{ github.workspace }}/build/x86_64-w64-mingw32/release/bin/camod.exe
 
   source-archive:
@@ -222,7 +240,7 @@ jobs:
     - name: archive
       run: |
         pip install git-archive-all
-        export VERSION="monero-gui-$(git describe)"
+        export VERSION="ghillie-$(git describe --always)"
         export OUTPUT="$VERSION.tar"
         echo "OUTPUT=$OUTPUT" >> $GITHUB_ENV
         /home/runner/.local/bin/git-archive-all --prefix "$VERSION/" --force-submodules "$OUTPUT"
