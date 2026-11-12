@@ -2,6 +2,11 @@ name: ci/gh-actions/ghillie
 
 on: [push, pull_request]
 
+# a newer push cancels builds still running for an older one (Mac builds take ~2 h)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   FREE_DISKSPACE: |
     sudo rm -rf /usr/local/.ghcup /usr/share/dotnet /usr/share/swift /usr/share/miniconda

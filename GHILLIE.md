@@ -43,3 +43,14 @@ Design reference: Ghillie mockups https://claude.ai/artifact/RfFeusuAaxrHQnLayoF
 - Nov 12: first test build (Intel Mac, CI) opened a CAMO stagenet wallet through a local camod and showed the right
   balance (5.0 CAMO). Fixed: network detection used Monero address letters; now C / Q / K-L. To do: QML tests in CI,
   Apple-silicon build, binary name `ghillie`, Monero logo/title, balance text overlap, Windows installer, Ghillie look.
+- Nov 12 (later): **v0.9.0 feature-complete for stagenet testing.** App is "Ghillie" (Ghillie.app / ghillie / ghillie.exe),
+  Ghillie icons; look from the mockups (website palette, amber accent, Inter + JetBrains Mono body, VT323 pixel headings
+  and balance, pixel-camo account card, GHILLIE title-bar logo); "Ghillie fee: 0 · never" on Send; Monero texts/links
+  -> CAMO/Ghillie/camocoin.org; Donate -> CAMO public marketing wallet; logs ~/.camo, wallets Documents/Ghillie.
+  Hidden for now: Simple mode (needs public CAMO wallet nodes; none yet) and create-from-hardware (Ledger/Trezor
+  don't support CAMO). Mac CI uses OpenSSL 3 (Monero 0.18 TLS code doesn't build with OpenSSL 4).
+  Tested locally (Linux, regtest chain): 15/15 QML tests (create, open, seed restore); wallet syncs and shows mined
+  balance; **sent 5 CAMO from Ghillie, receiver got exactly 5.0** (fee 0.00123).
+  Known (same as Monero's GUI): a wallet created by camo-wallet-cli and never synced is treated as new when first
+  opened in Ghillie and skips existing blocks. Fix: Settings > Info > change restore height (e.g. 0) to rescan.
+  To do: Windows installer (installers/windows still Monero's), seed-template PDF, translations, signed releases.
