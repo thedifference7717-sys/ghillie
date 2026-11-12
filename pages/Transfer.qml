@@ -79,7 +79,7 @@ Rectangle {
 
         return "";
     }
-    property string startLinkText: "<style type='text/css'>a {text-decoration: none; color: #FF6C3C; font-size: 14px;}</style><a href='#'>(%1)</a>".arg(qsTr("Start daemon")) + translationManager.emptyString
+    property string startLinkText: "<style type='text/css'>a {text-decoration: none; color: #E0A63A; font-size: 14px;}</style><a href='#'>(%1)</a>".arg(qsTr("Start daemon")) + translationManager.emptyString
     property bool warningLongPidDescription: descriptionLine.text.match(/^[0-9a-f]{64}$/i)
     property bool paymentIdBlocked: paymentIdCheckbox.checked || warningLongPidDescription
     property bool hasTransferWarnings: warningContent !== "" || paymentIdBlocked
@@ -1078,7 +1078,7 @@ Rectangle {
                 informationPopup.open();
             } else {
                 informationPopup.title = qsTr("Information") + translationManager.emptyString
-                informationPopup.text  = qsTr("Monero sent successfully") + translationManager.emptyString
+                informationPopup.text  = qsTr("CAMO sent successfully") + translationManager.emptyString
                 informationPopup.icon  = StandardIcon.Information
                 informationPopup.onCloseCallback = null
                 informationPopup.open();

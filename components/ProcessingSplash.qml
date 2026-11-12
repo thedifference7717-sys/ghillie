@@ -74,7 +74,7 @@ Rectangle {
                 width: 60
                 height: 60
                 anchors.centerIn: parent
-                source: "qrc:///images/monero-vector.svg"
+                source: "qrc:///images/ghillie-icon-256.png"
                 mipmap: true
             }
 

@@ -99,7 +99,7 @@ Rectangle {
             MoneroComponents.TextBlock {
                 id: guiMoneroVersion
                 font.pixelSize: 14
-                text: qsTr("Embedded Monero version: ") + translationManager.emptyString
+                text: qsTr("Embedded CAMO version: ") + translationManager.emptyString
             }
 
             MoneroComponents.TextBlock {
@@ -140,7 +140,7 @@ Rectangle {
                 property string walletPath: (isIOS ?  appWindow.accountsDir : "") + persistentSettings.wallet_path
                 text: "\
                     <style type='text/css'>\
-                        a {cursor:pointer;text-decoration: none; color: #FF6C3C}\
+                        a {cursor:pointer;text-decoration: none; color: #E0A63A}\
                     </style>\
                     <a href='#'>%1</a>".arg(Utils.htmlEscape(walletPath))
                 textFormat: Text.RichText
@@ -184,7 +184,7 @@ Rectangle {
                 textFormat: Text.RichText
                 color: MoneroComponents.Style.dimmedFontColor
                 font.pixelSize: 14
-                property var style: "<style type='text/css'>a {cursor:pointer;text-decoration: none; color: #FF6C3C}</style>"
+                property var style: "<style type='text/css'>a {cursor:pointer;text-decoration: none; color: #E0A63A}</style>"
                 text: (currentWallet ? currentWallet.walletCreationHeight : "") + style + " <a href='#'> (%1)</a>".arg(qsTr("Change")) + translationManager.emptyString
                 onLinkActivated: {
                     inputDialog.labelText = qsTr("Set a new restore height.\nYou can enter a block height or a date (YYYY-MM-DD):") + translationManager.emptyString;
@@ -266,7 +266,7 @@ Rectangle {
                 font.pixelSize: 14
                 text: "\
                     <style type='text/css'>\
-                        a {cursor:pointer;text-decoration: none; color: #FF6C3C}\
+                        a {cursor:pointer;text-decoration: none; color: #E0A63A}\
                     </style>\
                     <a href='#'>%1</a>".arg(logger.logFilePath)
                 textFormat: Text.RichText
@@ -407,9 +407,9 @@ Rectangle {
 
             MoneroComponents.StandardButton {
                 small: true
-                text: qsTr("Donate to Monero") + translationManager.emptyString
+                text: qsTr("Donate to CAMO") + translationManager.emptyString
                 onClicked: {
-                    middlePanel.sendTo("888tNkZrPN6JsEgekjMnABU4TBzc2Dt29EPAvkRxbANsAnjyPbb3iQ1YBRk1UXcdRsiKc9dhwMVgN5S9cQUiyoogDavup3H", "", qsTr("Donation to Monero Core Team") + translationManager.emptyString);
+                    middlePanel.sendTo("Cfbe7EfJzZW4H6Li6bvsmfTvjdQE5gsGvTf1PhS9MvnnEHpQUwgxVvFJd79u6KsgibPht4u2PRyj2fU7awZCoaPc6FaAtK4", "", qsTr("Donation to the CAMO public marketing wallet") + translationManager.emptyString);
                 }
             }
         }

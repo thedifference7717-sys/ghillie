@@ -124,7 +124,7 @@ Rectangle {
             textFormat: Text.RichText
             font.family: MoneroComponents.Style.fontRegular.name
             font.pixelSize: 14
-            text: qsTr("This records rings used by outputs spent on Monero on a key reusing chain, so that the same ring may be reused to avoid privacy issues.") + translationManager.emptyString
+            text: qsTr("This records rings used by outputs spent on CAMO on a key reusing chain, so that the same ring may be reused to avoid privacy issues.") + translationManager.emptyString
             wrapMode: Text.Wrap
             Layout.fillWidth: true;
             color: MoneroComponents.Style.defaultFontColor

@@ -35,7 +35,7 @@
         <file>components/TipItem.qml</file>
         <file>images/tip.png</file>
         <file>components/MenuButtonDivider.qml</file>
-        <file>images/monero-vector.svg</file>
+        <file>images/ghillie-icon-256.png</file>
         <file>components/StandardDropdown.qml</file>
         <file>images/whiteDropIndicator.png</file>
         <file>images/whiteDropIndicator@2x.png</file>
@@ -142,14 +142,16 @@
         <file>images/titlebarLogo@2x.png</file>
         <file>pages/merchant/MerchantTitlebar.qml</file>
         <file>images/menuButtonGradient.png</file>
-        <file>fonts/Roboto-Medium.ttf</file>
-        <file>fonts/Roboto-Regular.ttf</file>
-        <file>fonts/Roboto-Light.ttf</file>
-        <file>fonts/Roboto-Bold.ttf</file>
-        <file>fonts/RobotoMono-Medium.ttf</file>
-        <file>fonts/RobotoMono-Regular.ttf</file>
-        <file>fonts/RobotoMono-Light.ttf</file>
-        <file>fonts/RobotoMono-Bold.ttf</file>
+        <file>fonts/Inter-Regular.ttf</file>
+        <file>fonts/Inter-Medium.ttf</file>
+        <file>fonts/Inter-SemiBold.ttf</file>
+        <file>fonts/Inter-Bold.ttf</file>
+        <file>fonts/Inter-Light.ttf</file>
+        <file>fonts/JetBrainsMono-Regular.ttf</file>
+        <file>fonts/JetBrainsMono-Medium.ttf</file>
+        <file>fonts/JetBrainsMono-Bold.ttf</file>
+        <file>fonts/JetBrainsMono-Light.ttf</file>
+        <file>fonts/VT323-Regular.ttf</file>
         <file>components/Style.qml</file>
         <file>components/qmldir</file>
         <file>components/InlineButton.qml</file>

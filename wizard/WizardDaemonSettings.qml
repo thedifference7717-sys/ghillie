@@ -78,7 +78,7 @@ ColumnLayout {
             labelText: {
                 const label = qsTr("Blockchain location (optional)");
                 if (persistentSettings.blockchainDataDir) {
-                    const style = "<style type='text/css'>a {cursor:pointer;text-decoration: none; color: #FF6C3C}</style>";
+                    const style = "<style type='text/css'>a {cursor:pointer;text-decoration: none; color: #E0A63A}</style>";
                     return label + style + "<a href='#'> (%1)</a>".arg(qsTr("Reset")) + translationManager.emptyString;
                 } else {
                     return label + translationManager.emptyString;
@@ -150,7 +150,7 @@ ColumnLayout {
             }
 
             Text {
-                text: qsTr("Additionally, you may specify a bootstrap node to use Monero immediately.") + translationManager.emptyString
+                text: qsTr("Additionally, you may specify a bootstrap node to use CAMO immediately.") + translationManager.emptyString
                 Layout.topMargin: 4
                 Layout.fillWidth: true
 

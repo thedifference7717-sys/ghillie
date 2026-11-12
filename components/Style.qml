@@ -4,20 +4,22 @@ import QtQuick 2.5
 
 QtObject {
     property bool blackTheme: true
-    property QtObject fontMedium: FontLoader { id: _fontMedium; source: "qrc:/fonts/Roboto-Medium.ttf"; }
-    property QtObject fontBold: FontLoader { id: _fontBold; source: "qrc:/fonts/Roboto-Bold.ttf"; }
-    property QtObject fontLight: FontLoader { id: _fontLight; source: "qrc:/fonts/Roboto-Light.ttf"; }
-    property QtObject fontRegular: FontLoader { id: _fontRegular; source: "qrc:/fonts/Roboto-Regular.ttf"; }
+    property QtObject fontMedium: FontLoader { id: _fontMedium; source: "qrc:/fonts/Inter-Medium.ttf"; }
+    property QtObject fontBold: FontLoader { id: _fontBold; source: "qrc:/fonts/Inter-Bold.ttf"; }
+    property QtObject fontLight: FontLoader { id: _fontLight; source: "qrc:/fonts/Inter-Light.ttf"; }
+    property QtObject fontRegular: FontLoader { id: _fontRegular; source: "qrc:/fonts/Inter-Regular.ttf"; }
 
-    property QtObject fontMonoMedium: FontLoader { id: _fontMonoMedium; source: "qrc:/fonts/RobotoMono-Medium.ttf"; }
-    property QtObject fontMonoBold: FontLoader { id: _fontMonoBold; source: "qrc:/fonts/RobotoMono-Bold.ttf"; }
-    property QtObject fontMonoLight: FontLoader { id: _fontMonoLight; source: "qrc:/fonts/RobotoMono-Light.ttf"; }
-    property QtObject fontMonoRegular: FontLoader { id: _fontMonoRegular; source: "qrc:/fonts/RobotoMono-Regular.ttf"; }
+    // Ghillie: VT323 pixel font for headings, labels, big numbers and addresses (smoothing off)
+    property QtObject fontPixel: FontLoader { id: _fontPixel; source: "qrc:/fonts/VT323-Regular.ttf"; }
+    property QtObject fontMonoMedium: FontLoader { id: _fontMonoMedium; source: "qrc:/fonts/JetBrainsMono-Medium.ttf"; }
+    property QtObject fontMonoBold: FontLoader { id: _fontMonoBold; source: "qrc:/fonts/JetBrainsMono-Bold.ttf"; }
+    property QtObject fontMonoLight: FontLoader { id: _fontMonoLight; source: "qrc:/fonts/JetBrainsMono-Light.ttf"; }
+    property QtObject fontMonoRegular: FontLoader { id: _fontMonoRegular; source: "qrc:/fonts/JetBrainsMono-Regular.ttf"; }
 
     property string grey: "#404040"
-    property string orange: "#FF6C3C"
+    property string orange: "#E0A63A"
     property string white: "#FFFFFF"
-    property string green: "#2EB358"
+    property string green: "#8FA37A"
     property string moneroGrey: "#4C4C4C"
     property string warningColor: "orange"
 
@@ -83,72 +85,72 @@ QtObject {
     property string historyHeaderTextColor: blackTheme ? _b_historyHeaderTextColor : _w_historyHeaderTextColor
     property var accountColors: blackTheme ? _b_accountColors : _w_accountColors
 
-    property string _b_defaultFontColor: "white"
-    property string _b_dimmedFontColor: "#BBBBBB"
-    property string _b_lightGreyFontColor: "#DFDFDF"
-    property string _b_errorColor: "#FA6800"
-    property string _b_textSelectionColor: "#BBBBBB"
-    property string _b_textSelectedColor: "white"
+    property string _b_defaultFontColor: "#E7E9E2"
+    property string _b_dimmedFontColor: "#B9C2B1"
+    property string _b_lightGreyFontColor: "#C9D6B8"
+    property string _b_errorColor: "#E5704B"
+    property string _b_textSelectionColor: "#4A5E4E"
+    property string _b_textSelectedColor: "#E7E9E2"
 
-    property string _b_inputBoxBackground: "black"
-    property string _b_inputBoxBackgroundDisabled: Qt.rgba(255, 255, 255, 0.10)
+    property string _b_inputBoxBackground: "#080B09"
+    property string _b_inputBoxBackgroundDisabled: "#121A15"
     property string _b_inputBoxBackgroundError: "#FFDDDD"
-    property string _b_inputBoxColor: "white"
-    property string _b_legacy_placeholderFontColor: "#BABABA"
-    property string _b_inputBorderColorActive: Qt.rgba(255, 255, 255, 0.38)
-    property string _b_inputBorderColorInActive: Qt.rgba(255, 255, 255, 0.32)
-    property string _b_inputBorderColorInvalid: Qt.rgba(255, 0, 0, 0.40)
+    property string _b_inputBoxColor: "#E7E9E2"
+    property string _b_legacy_placeholderFontColor: "#9AA593"
+    property string _b_inputBorderColorActive: "#8FA37A"
+    property string _b_inputBorderColorInActive: "#2E4034"
+    property string _b_inputBorderColorInvalid: "#E5704B"
 
-    property string _b_buttonBackgroundColor: "#FA6800"
-    property string _b_buttonBackgroundColorHover: "#E65E00"
-    property string _b_buttonBackgroundColorDisabled: "#707070"
-    property string _b_buttonBackgroundColorDisabledHover: "#808080"
-    property string _b_buttonInlineBackgroundColor: "#707070"
-    property string _b_buttonInlineBackgroundColorHover: "#808080"
-    property string _b_buttonTextColor: "white"
-    property string _b_buttonTextColorDisabled: "black"
-    property string _b_buttonSecondaryBackgroundColor: "#707070"
-    property string _b_buttonSecondaryBackgroundColorHover: "#808080"
-    property string _b_buttonSecondaryTextColor: "white"
-    property string _b_dividerColor: "white"
-    property real _b_dividerOpacity: 0.20
+    property string _b_buttonBackgroundColor: "#E0A63A"
+    property string _b_buttonBackgroundColorHover: "#EDB955"
+    property string _b_buttonBackgroundColorDisabled: "#24332A"
+    property string _b_buttonBackgroundColorDisabledHover: "#2E4034"
+    property string _b_buttonInlineBackgroundColor: "#24332A"
+    property string _b_buttonInlineBackgroundColorHover: "#2E4034"
+    property string _b_buttonTextColor: "#0B0F0C"
+    property string _b_buttonTextColorDisabled: "#9AA593"
+    property string _b_buttonSecondaryBackgroundColor: "#24332A"
+    property string _b_buttonSecondaryBackgroundColorHover: "#2E4034"
+    property string _b_buttonSecondaryTextColor: "#E7E9E2"
+    property string _b_dividerColor: "#8FA37A"
+    property real _b_dividerOpacity: 0.25
 
-    property string _b_titleBarBackgroundGradientStart: "#262626";
-    property string _b_titleBarBackgroundGradientStop: "#191919"
-    property string _b_titleBarBackgroundBorderColor: "#2f2f2f"
+    property string _b_titleBarBackgroundGradientStart: "#0B0F0C";
+    property string _b_titleBarBackgroundGradientStop: "#080B09"
+    property string _b_titleBarBackgroundBorderColor: "#24332A"
     property string _b_titleBarLogoSource: "qrc:///images/titlebarLogo.png"
     property string _b_titleBarMinimizeSource: "qrc:///images/minimize.svg"
     property string _b_titleBarFullscreenSource: "qrc:///images/fullscreen.svg"
     property string _b_titleBarCloseSource: "qrc:///images/close.svg"
     property string _b_titleBarButtonHoverColor: "#10FFFFFF"
 
-    property string _b_wizardBackgroundGradientStart: "#1e1e1e"
-    property string _b_middlePanelBackgroundGradientStart: "#232323"
-    property string _b_middlePanelBackgroundGradientStop: "#101010"
-    property string _b_middlePanelBackgroundColor: "#181818"
+    property string _b_wizardBackgroundGradientStart: "#0B0F0C"
+    property string _b_middlePanelBackgroundGradientStart: "#0B0F0C"
+    property string _b_middlePanelBackgroundGradientStop: "#0B0F0C"
+    property string _b_middlePanelBackgroundColor: "#0B0F0C"
     property string _b_menuButtonFallbackBackgroundColor: "#09FFFFFF"
     property string _b_menuButtonGradientStart: "#11FFFFFF"
     property string _b_menuButtonGradientStop: "#00000000"
-    property string _b_menuButtonTextColor: "white"
-    property string _b_menuButtonImageRightColorActive: "white"
-    property string _b_menuButtonImageRightColor: "white"
+    property string _b_menuButtonTextColor: "#E7E9E2"
+    property string _b_menuButtonImageRightColorActive: "#E0A63A"
+    property string _b_menuButtonImageRightColor: "#9AA593"
     property string _b_menuButtonImageRightSource: "qrc:///images/right.svg"
     property string _b_menuButtonImageDotArrowSource: "qrc:///images/arrow-right-medium-white.png"
-    property string _b_inlineButtonTextColor: "white"
-    property string _b_inlineButtonBorderColor: "black"
+    property string _b_inlineButtonTextColor: "#E7E9E2"
+    property string _b_inlineButtonBorderColor: "#080B09"
     property string _b_appWindowBackgroundColor: "white"
-    property string _b_appWindowBorderColor: "#313131"
+    property string _b_appWindowBorderColor: "#24332A"
     property bool _b_progressBarProgressTextBold: true
-    property string _b_progressBarBackgroundColor: "#24FFFFFF"
-    property string _b_leftPanelBackgroundGradientStart: "#222222"
-    property string _b_leftPanelBackgroundGradientStop: "#1a1a1a"
-    property string _b_historyHeaderTextColor: "#C0C0C0"
-    property var _b_accountColors: ["#6E513C", "#842129", "#458421", "#742184", "#291DBE", "#846F21", "#217F84", "#696969"]
+    property string _b_progressBarBackgroundColor: "#1C2820"
+    property string _b_leftPanelBackgroundGradientStart: "#080B09"
+    property string _b_leftPanelBackgroundGradientStop: "#080B09"
+    property string _b_historyHeaderTextColor: "#9AA593"
+    property var _b_accountColors: ["#4A5E4E", "#5E5A3A", "#3A5E5A", "#5E4A3A", "#3A4A5E", "#55603A", "#3F5244", "#4E4E4E"]
 
     property string _w_defaultFontColor: "black"
     property string _w_dimmedFontColor: "#3f3f3f"
     property string _w_lightGreyFontColor: "#515151"
-    property string _w_errorColor: "#FA6800"
+    property string _w_errorColor: "#C2462A"
     property string _w_textSelectionColor: "#BBBBBB"
     property string _w_textSelectedColor: "black"
 
@@ -161,8 +163,8 @@ QtObject {
     property string _w_inputBorderColorInActive: Qt.rgba(0, 0, 0, 0.16)
     property string _w_inputBorderColorInvalid: Qt.rgba(255, 0, 0, 0.50)
 
-    property string _w_buttonBackgroundColor: "#FA6800"
-    property string _w_buttonBackgroundColorHover: "#E65E00"
+    property string _w_buttonBackgroundColor: "#C98F22"
+    property string _w_buttonBackgroundColorHover: "#B37E1C"
     property string _w_buttonBackgroundColorDisabled: "#bbbbbb"
     property string _w_buttonBackgroundColorDisabledHover: "#D1D1D1"
     property string _w_buttonInlineBackgroundColor: "#d9d9d9"
@@ -193,7 +195,7 @@ QtObject {
     property string _w_menuButtonGradientStop: "#10FFFFFF"
     property string _w_menuButtonTextColor: "#787878"
     property string _w_menuButtonImageRightSource: "qrc:///images/right.svg"
-    property string _w_menuButtonImageRightColorActive: "#FA6800"
+    property string _w_menuButtonImageRightColorActive: "#E0A63A"
     property string _w_menuButtonImageRightColor: "#808080"
     property string _w_menuButtonImageDotArrowSource: "qrc:///images/arrow-right-medium-white.png"
     property string _w_inlineButtonTextColor: "#4d4d4d"

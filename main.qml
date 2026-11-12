@@ -1477,7 +1477,7 @@ ApplicationWindow {
                 oshelper.createDesktopEntry();
             } else if (isLinux) {
                 confirmationDialog.title = qsTr("Desktop entry") + translationManager.emptyString;
-                confirmationDialog.text  = qsTr("Would you like to register Monero GUI Desktop entry?") + translationManager.emptyString;
+                confirmationDialog.text  = qsTr("Would you like to register the Ghillie desktop entry?") + translationManager.emptyString;
                 confirmationDialog.icon = StandardIcon.Question;
                 confirmationDialog.cancelText = qsTr("No") + translationManager.emptyString;
                 confirmationDialog.okText = qsTr("Yes") + translationManager.emptyString;
@@ -2081,7 +2081,7 @@ ApplicationWindow {
             property alias text: content.text
             width: content.width + 12
             height: content.height + 17
-            color: "#FF6C3C"
+            color: "#E0A63A"
             //radius: 3
             visible:false;
 
