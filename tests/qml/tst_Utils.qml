@@ -53,9 +53,15 @@ Item {
         }
 
         function test_hyphenated_date_becomes_a_height() {
-            var height = Utils.parseDateStringOrRestoreHeightAsInteger("2020-12-25")
-            compare(height, Wizard.getApproximateBlockchainHeight("2020-12-25", "Mainnet"))
+            // CAMO mainnet starts 2026-12-15; a date well after that maps to a positive height
+            var height = Utils.parseDateStringOrRestoreHeightAsInteger("2027-06-15")
+            compare(height, Wizard.getApproximateBlockchainHeight("2027-06-15", "Mainnet"))
             verify(height > 0)
+        }
+
+        function test_date_before_camo_chain_restores_from_zero() {
+            compare(Wizard.getApproximateBlockchainHeight("2020-12-25", "Mainnet"), 0)
+            compare(Wizard.getApproximateBlockchainHeight("2026-12-01", "Mainnet"), 0)
         }
 
         function test_compact_date_matches_hyphenated_date() {
@@ -65,7 +71,7 @@ Item {
             var year = new Date().getFullYear()
             var compact = Utils.parseDateStringOrRestoreHeightAsInteger(year + "0315")
             compare(compact, Utils.parseDateStringOrRestoreHeightAsInteger(year + "-03-15"))
-            verify(compact > 0)
+            verify(compact < 10000000)
         }
 
         function test_compact_number_before_monero_stays_a_height() {
