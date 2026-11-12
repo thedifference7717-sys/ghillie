@@ -12,7 +12,7 @@ set(VERSION "0.${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_REVISION}")
 
 option(STATIC "Link libraries statically, requires static Qt")
 
-option(USE_DEVICE_TREZOR "Trezor support compilation" ON)
+option(USE_DEVICE_TREZOR "Trezor support compilation (off: Trezor does not support CAMO)" OFF)
 option(WITH_SCANNER "Enable webcam QR scanner" OFF)
 option(WITH_DESKTOP_ENTRY "Ask to install desktop entry on first startup" ON)
 option(WITH_UPDATER "Regularly check for new updates" ON)
