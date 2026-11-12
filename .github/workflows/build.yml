@@ -18,7 +18,7 @@ jobs:
     - name: install dependencies
       run: HOMEBREW_NO_AUTO_UPDATE=1 brew install boost hidapi ninja openssl zmq libsodium unbound protobuf qt5 pkg-config
     - name: build
-      run: DEV_MODE=ON QML_TESTS=ON make release
+      run: QML_TESTS=ON make release
     - name: test qml
       run: build/release/bin/monero-wallet-gui.app/Contents/MacOS/monero-wallet-gui --test-qml
 
@@ -42,7 +42,7 @@ jobs:
     - name: install monero gui dependencies
       run: sudo apt -y install qtbase5-dev qtdeclarative5-dev qml-module-qtqml-models2 qml-module-qtquick-controls qml-module-qtquick-controls2 qml-module-qtquick-dialogs qml-module-qtquick-xmllistmodel qml-module-qt-labs-settings qml-module-qt-labs-platform qml-module-qt-labs-folderlistmodel qml-module-qttest qttools5-dev-tools qml-module-qtquick-templates2 libqt5svg5-dev libgcrypt20-dev xvfb
     - name: build
-      run: DEV_MODE=ON QML_TESTS=ON make release
+      run: QML_TESTS=ON make release
     - name: test qml
       run: xvfb-run -a build/release/bin/monero-wallet-gui --test-qml
 
@@ -66,7 +66,7 @@ jobs:
         cp -f "$MSYSTEM_PREFIX/bin/qmake-qt5.exe" "$MSYSTEM_PREFIX/bin/qmake.exe"
         cp -f "$MSYSTEM_PREFIX/bin/windeployqt-qt5.exe" "$MSYSTEM_PREFIX/bin/windeployqt.exe"
     - name: build
-      run: DEV_MODE=ON QML_TESTS=ON make release-win64
+      run: QML_TESTS=ON make release-win64
     - name: deploy
       run: cmake --build . --target deploy
       working-directory: build/release
@@ -100,9 +100,13 @@ jobs:
         make install
     - name: build monero-gui
       run: |
+        set -o pipefail
         mkdir build && cd build
-        cmake -G Ninja -D CMAKE_BUILD_TYPE=Release -D ARCH=default -D CMAKE_PREFIX_PATH="${QT_PREFIX}" ..
-        cmake --build .
+        cmake -G Ninja -D CMAKE_BUILD_TYPE=Release -D ARCH=default -D CMAKE_PREFIX_PATH="${QT_PREFIX}" .. 2>&1 | tee ../build.log
+        cmake --build . 2>&1 | tee -a ../build.log
+    - name: show build errors as annotations
+      if: failure()
+      run: grep -n -E "error:|Error |FAILED:|CMake Error" build.log | head -10 | while IFS= read -r l; do echo "::error::${l:0:900}"; done
     - name: deploy
       run: cmake --build . --target deploy
       working-directory: build
@@ -143,9 +147,13 @@ jobs:
         make install
     - name: build monero-gui
       run: |
+        set -o pipefail
         mkdir build && cd build
-        cmake -G Ninja -D CMAKE_BUILD_TYPE=Release -D ARCH=default -D CMAKE_PREFIX_PATH="${QT_PREFIX}" ..
-        cmake --build .
+        cmake -G Ninja -D CMAKE_BUILD_TYPE=Release -D ARCH=default -D CMAKE_PREFIX_PATH="${QT_PREFIX}" .. 2>&1 | tee ../build.log
+        cmake --build . 2>&1 | tee -a ../build.log
+    - name: show build errors as annotations
+      if: failure()
+      run: grep -n -E "error:|Error |FAILED:|CMake Error" build.log | head -10 | while IFS= read -r l; do echo "::error::${l:0:900}"; done
     - name: deploy
       run: cmake --build . --target deploy
       working-directory: build
