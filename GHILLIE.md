@@ -40,3 +40,6 @@ Design reference: Ghillie mockups https://claude.ai/artifact/RfFeusuAaxrHQnLayoF
   fiat price providers removed and price setting hidden; update checker disabled and hidden; P2Pool removed (solo mining
   only; it downloaded p2pool from GitHub and mines Monero's chain).
 - Next: stage 1 plumbing (submodule -> CAMO repo, binary/app name, Linux CI build), first compile, then the Ghillie look.
+- Nov 12: first test build (Intel Mac, CI) opened a CAMO stagenet wallet through a local camod and showed the right
+  balance (5.0 CAMO). Fixed: network detection used Monero address letters; now C / Q / K-L. To do: QML tests in CI,
+  Apple-silicon build, binary name `ghillie`, Monero logo/title, balance text overlap, Windows installer, Ghillie look.
