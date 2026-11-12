@@ -77,6 +77,8 @@ Rectangle {
             }
 
             WizardMenuItem {
+                // Ghillie v0.9: hidden until public CAMO wallet nodes exist (Simple mode needs one; it never syncs itself)
+                visible: false
                 opacity: simpleModeAvailable ? 1.0 : 0.5
                 Layout.topMargin: 20
                 headerText: qsTr("Simple mode") + translationManager.emptyString
@@ -102,6 +104,7 @@ Rectangle {
             }
 
             Rectangle {
+                visible: false
                 Layout.preferredHeight: 1
                 Layout.topMargin: 5
                 Layout.bottomMargin: 10

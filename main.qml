@@ -56,7 +56,7 @@ import "version.js" as Version
 ApplicationWindow {
     id: appWindow
     signal gracefulShutdownComplete()
-    title: "Monero" +
+    title: "Ghillie" +
         (persistentSettings.displayWalletNameInTitleBar && walletName
         ? " - " + walletName
         : "")
@@ -1496,7 +1496,7 @@ ApplicationWindow {
         id: persistentSettings
         fileName: {
             if(isTails && tailsUsePersistence)
-                return homePath + "/Persistent/Monero/monero-core.conf";
+                return homePath + "/Persistent/Ghillie/ghillie.conf";
             return "";
         }
 

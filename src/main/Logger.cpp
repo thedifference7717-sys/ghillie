@@ -62,7 +62,7 @@ static const QString defaultLogName = "ghillie.log";
 #else // linux + bsd
     //HomeLocation = "~"
     static const QString osPath = QStandardPaths::standardLocations(QStandardPaths::HomeLocation).at(0);
-    static const QString appFolder = ".bitmonero";
+    static const QString appFolder = ".camo";
 #endif
 
 
@@ -81,7 +81,7 @@ const QString getLogPath(const QString &userDefinedLogFilePath, bool portable)
     }
 
     if(TailsOS::detect() && TailsOS::usePersistence)
-        return QDir::homePath() + "/Persistent/Monero/logs/" + defaultLogName;
+        return QDir::homePath() + "/Persistent/Ghillie/logs/" + defaultLogName;
     else {
         QDir appDir(osPath + "/" + appFolder);
         if(!appDir.exists())

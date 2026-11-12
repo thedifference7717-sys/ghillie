@@ -248,7 +248,7 @@ int main(int argc, char *argv[])
     // - Log file location
     // - QML Settings file location (monero-core.conf)
     // - Default wallets path
-    // Target directory is: ~/Persistent/Monero
+    // Target directory is: ~/Persistent/Ghillie
     if (isTails) {
         if (!TailsOS::detectDataPersistence())
             TailsOS::showDataPersistenceDisabledWarning();
@@ -264,9 +264,9 @@ int main(int argc, char *argv[])
     #endif
 
     if(isTails && TailsOS::usePersistence){
-        moneroAccountsDir = QDir::homePath() + "/Persistent/Monero/wallets";
+        moneroAccountsDir = QDir::homePath() + "/Persistent/Ghillie/wallets";
     } else if (!moneroAccountsRootDir.empty()) {
-        moneroAccountsDir = moneroAccountsRootDir.at(0) + "/Monero/wallets";
+        moneroAccountsDir = moneroAccountsRootDir.at(0) + "/Ghillie/wallets";
     } else {
         qCritical() << "Error: accounts root directory could not be set";
         return 1;
