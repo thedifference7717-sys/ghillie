@@ -292,9 +292,10 @@ std::pair<quint8, QString> OSHelper::getNetworkTypeAndAddressFromFile(const QStr
         QString _address = QString(file.readAll());
         if(!_address.isEmpty()){
             address = _address;
-            if(address.startsWith("5") || address.startsWith("7")){
+            // CAMO address prefixes: mainnet C, stagenet Q, testnet K/L
+            if(address.startsWith("Q")){
                 networkType = NetworkType::STAGENET;
-            } else if(address.startsWith("9") || address.startsWith("A")){
+            } else if(address.startsWith("K") || address.startsWith("L")){
                 networkType = NetworkType::TESTNET;
             }
         }
