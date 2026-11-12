@@ -883,6 +883,18 @@ Rectangle {
                   root.paymentClicked(recipientModel.getRecipients(), paymentIdLine.text, root.mixin, priority, descriptionLine.text)
               }
           }
+
+          // Ghillie never adds a fee of its own: an extra output would make Ghillie transactions stand out
+          MoneroComponents.TextPlain {
+              Layout.leftMargin: 16
+              Layout.topMargin: 4
+              text: qsTr("Ghillie fee: 0 · never") + translationManager.emptyString
+              font.family: MoneroComponents.Style.fontPixel.name
+              renderType: Text.NativeRendering
+              antialiasing: false
+              font.pixelSize: 20
+              color: MoneroComponents.Style.dimmedFontColor
+          }
       }
     } // pageRoot
 

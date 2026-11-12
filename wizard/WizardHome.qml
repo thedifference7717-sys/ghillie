@@ -104,6 +104,8 @@ Rectangle {
             }
 
             WizardMenuItem {
+                // Ghillie: hardware wallets (Ledger, Trezor) don't support CAMO yet
+                visible: false
                 headerText: {
                     var nettype = persistentSettings.nettype;
                     return qsTr("Create a new wallet from hardware") + (nettype === 2 ? " (" + qsTr("stagenet") + ")"
@@ -120,6 +122,7 @@ Rectangle {
             }
 
             Rectangle {
+                visible: false
                 Layout.preferredHeight: 1
                 Layout.topMargin: 3
                 Layout.bottomMargin: 3
