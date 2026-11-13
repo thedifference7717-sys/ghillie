@@ -8,7 +8,7 @@ void main() {
     t.view.physicalSize = const Size(390, 844) * 3;
     t.view.devicePixelRatio = 3;
     addTearDown(t.view.reset);
-    await t.pumpWidget(GhillieApp(wallet: DemoWallet()));
+    await t.pumpWidget(GhillieApp(wallet: DemoWallet(), showIntro: false));
     expect(find.text('1,239.63'), findsOneWidget);
     expect(find.text('DEMO'), findsOneWidget);
     expect(find.text('Receive'), findsOneWidget);
@@ -35,7 +35,7 @@ void main() {
     t.view.physicalSize = const Size(390, 844) * 3;
     t.view.devicePixelRatio = 3;
     addTearDown(t.view.reset);
-    await t.pumpWidget(GhillieApp(wallet: DemoWallet()));
+    await t.pumpWidget(GhillieApp(wallet: DemoWallet(), showIntro: false));
     await t.tap(find.text('Receive'));
     await t.pumpAndSettle();
     expect(find.textContaining('camo:Q'), findsOneWidget);
@@ -48,5 +48,17 @@ void main() {
     await t.tap(find.text('Save'));
     await t.pumpAndSettle();
     expect(find.textContaining('"BOB"'), findsOneWidget);
+  });
+
+  testWidgets('opening scope: Skip enters the wallet', (t) async {
+    t.view.physicalSize = const Size(390, 844) * 3;
+    t.view.devicePixelRatio = 3;
+    addTearDown(t.view.reset);
+    await t.pumpWidget(GhillieApp(wallet: DemoWallet()));
+    await t.pump(const Duration(milliseconds: 100));
+    expect(find.textContaining('DRAG THE SCOPE'), findsOneWidget);
+    await t.tap(find.text('Skip'));
+    await t.pump(const Duration(milliseconds: 400));
+    expect(find.text('1,239.63'), findsOneWidget);
   });
 }

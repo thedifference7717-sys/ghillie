@@ -15,11 +15,13 @@ Planned release: Q1 2027, after CAMO mainnet (Dec 15, 2026). Desktop Ghillie liv
   pixel-camo card; the Ghillie logo stays smooth).
 
 ## What works now
+- Opening screen: the camocoin.org scope (living pixel-camo field, hidden CAMO, drag to aim, tap to enter; Skip;
+  still when the phone asks for reduced motion).
 - Screens: wallet home, send (with review), receive (QR, `camo:` links, a fresh address per payer), rigs (preview),
   settings. They run on **demo data** (`lib/wallet/demo_wallet.dart`) and show a DEMO badge.
 - `camo:` payment links (build/parse; `monero:` refused), CAMO amounts (exact, 12 decimals, BigInt), address shape
   hints per network (C mainnet, Q stagenet, K/L testnet; Monero addresses get a clear message).
-- 10 tests (`flutter test`), CI builds a demo Android APK and an unsigned iOS app.
+- 11 tests (`flutter test`), CI builds a demo Android APK and an unsigned iOS app.
 
 ## Plan
 1. **Wallet bridge** (`native/`): C functions over `wallet2_api.h` (create/restore/open, subaddresses, sync,
